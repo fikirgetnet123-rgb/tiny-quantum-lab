@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>photoelectric effect — tiny quantum lab</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+<nav class="nav">
+<a class="brand" href="index.html"><span class="atom">✦</span> tiny quantum lab</a>
+<a class="nav-link" href="index.html">← all experiments</a>
+</nav>
+
+<section class="experiment-page">
+<div class="experiment-copy">
+<p class="eyebrow">Experiment 04 — Photoelectric effect</p>
+<h1>Why can bright red light still fail?</h1>
+<p>Shine light on a metal and watch electrons escape. Change the light's color and brightness to discover why the energy of each photon matters more than the total brightness.</p>
+
+<div class="challenge">
+<strong>Try this:</strong> turn red light all the way up. Can brightness alone release electrons?
+</div>
+
+<div class="controls">
+<label>Light color
+<input id="color" type="range" min="0" max="100" value="58">
+<output id="colorValue">green</output>
+</label>
+
+<label>Brightness
+<input id="brightness" type="range" min="5" max="100" value="55">
+<output id="brightnessValue">55%</output>
+</label>
+
+<label>Metal type
+<select id="metal">
+<option value="2.0">cesium-like (easy)</option>
+<option value="2.7" selected>calcium-like</option>
+<option value="3.5">zinc-like (hard)</option>
+</select>
+</label>
+
+<div class="actions">
+<button id="toggle" class="button">shine light</button>
+<button id="reset" class="button secondary">start over</button>
+</div>
+</div>
+</div>
+
+<div class="lab">
+<canvas id="photoSimulator" width="760" height="480" aria-label="Photoelectric effect simulation"></canvas>
+<div class="readout">
+<span class="status-dot"></span>
+<span id="photonCount">0</span> photons sent ·
+<span id="electronCount">0</span> electrons released
+</div>
+</div>
+</section>
+
+<section class="why">
+<p class="eyebrow">What did you notice?</p>
+<h2>Color sets the energy. Brightness sets how many photons arrive.</h2>
+<p>A blue photon has more energy than a red photon because blue light has a higher frequency. If each photon has less energy than the metal needs to release an electron, making the light brighter still does not make those photons energetic enough. This is one of the key pieces of evidence that light interacts with matter in discrete packets called <strong>photons</strong>.</p>
+
+<details>
+<summary>what this animation is showing</summary>
+<p>Colored dots represent photons. An electron is released when an individual photon's energy is high enough to overcome the selected metal's work function. This is a simplified model of the photoelectric effect.</p>
+</details>
+</section>
+
+<section class="lesson">
+<p class="eyebrow">The idea, step by step</p>
+<h2>One photon must provide enough energy.</h2>
+
+<ol class="story-steps">
+<li>
+<span class="step-number">1</span>
+<div>
+<h3>Light comes in photons.</h3>
+<p>Brightness controls how many photons arrive each second. It does not increase the energy of each photon.</p>
+</div>
+</li>
+
+<li>
+<span class="step-number">2</span>
+<div>
+<h3>Color tells us the photon energy.</h3>
+<p>Blue and violet light have higher frequencies than red light, so each blue or violet photon carries more energy.</p>
+</div>
+</li>
+
+<li>
+<span class="step-number">3</span>
+<div>
+<h3>The electron needs enough energy to escape.</h3>
+<p>A metal holds its electrons in place. The minimum energy needed to remove one is called the <strong>work function</strong>.</p>
+</div>
+</li>
+
+<li>
+<span class="step-number">4</span>
+<div>
+<h3>Extra energy becomes kinetic energy.</h3>
+<p>If the photon has more energy than the work function, the electron can escape. The remaining energy becomes the electron's kinetic energy.</p>
+</div>
+</li>
+</ol>
+
+<div class="equation-card">
+<p class="eyebrow">The essential maths</p>
+<div class="equation">E = hf</div>
+<p>Photon energy <strong>E</strong> equals Planck's constant <strong>h</strong> times frequency <strong>f</strong>. Higher frequency means higher-energy photons.</p>
+
+<div class="equation small-equation">K = hf − φ</div>
+<p><strong>φ</strong> is the metal's work function. If <em>hf</em> is smaller than φ, the photon cannot release an electron. If it is larger, the difference becomes the electron's kinetic energy <strong>K</strong>.</p>
+</div>
+</section>
+
+<section class="control-guide">
+<p class="eyebrow">Make a change, see a reason</p>
+<h2>What do the controls actually do?</h2>
+
+<div class="control-explanations">
+<article>
+<h3>Shift toward blue</h3>
+<p>Each photon carries more energy. Once the photon energy reaches the metal's threshold, electrons can escape.</p>
+</article>
+
+<article>
+<h3>Increase brightness</h3>
+<p>More photons arrive each second. If their energy is above the threshold, more electrons can be released. If their energy is below the threshold, increasing brightness still does not release electrons.</p>
+</article>
+
+<article>
+<h3>Choose an easier metal</h3>
+<p>A lower work function means less energy is needed for an electron to escape.</p>
+</article>
+
+<article>
+<h3>Watch for the key surprise</h3>
+<p>In the photoelectric effect, many low-energy photons do not simply combine their energies to release one electron. Each photon must provide enough energy on its own.</p>
+</article>
+</div>
+
+<div class="live-insight" id="photoInsight">
+</div>
+</section>
+
+<section class="try-next">
+<p class="eyebrow">Your mini investigation</p>
+<h2>Find the threshold.</h2>
+<ol>
+<li>Pick the calcium-like metal and turn brightness down.</li>
+<li>Move from red toward blue until electrons first appear.</li>
+<li>Now raise brightness. Does the number of electrons change?</li>
+<li>Switch metals and find which one needs the highest-frequency light.</li>
+</ol>
+</section>
+
+</main>
+<footer>Made for curious minds. No quantum degree needed.</footer>
+<script src="photoelectric.js"></script>
+</body>
+</html>

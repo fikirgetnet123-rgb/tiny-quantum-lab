@@ -1,0 +1,113 @@
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore moving and spreading quantum wave packets." />
+    <title>wave packets — tiny quantum lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="index.html"><span class="atom">✦</span> tiny quantum lab</a>
+        <a class="nav-link" href="index.html">← all experiments</a>
+      </nav>
+
+      <section class="experiment-page" aria-labelledby="experiment-title">
+        <div class="experiment-copy">
+          <p class="eyebrow">Experiment 03 — Wave packets</p>
+          <h1>How can a quantum particle have a location and still behave like a wave?</h1>
+          <p>A wave packet is a quantum state that is concentrated around a particular region of space. It can move, spread out, and reflect from a wall. Press play and watch the wavefunction and the probability of finding the particle change over time.</p>
+          <div class="challenge"><strong>Try this:</strong> make the packet narrow. Does it stay focused, or does it spread faster?</div>
+          <div class="controls" aria-label="Experiment controls">
+            <label>
+              Space
+              <select id="spaceMode"><option value="free">open space</option><option value="wall">wall at the end</option></select>
+            </label>
+            <label>
+              Starting width
+              <input id="width" type="range" min="18" max="75" value="42" />
+              <output id="widthValue">medium</output>
+            </label>
+            <label>
+              Particle mass
+              <input id="mass" type="range" min="20" max="100" value="55" />
+              <output id="massValue">medium</output>
+            </label>
+            <label>
+              Momentum
+              <input id="momentum" type="range" min="20" max="100" value="56" />
+              <output id="momentumValue">medium</output>
+            </label>
+            <div class="actions">
+              <button id="toggle" class="button" type="button">play</button>
+              <button id="reset" class="button secondary" type="button">start over</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lab">
+          <canvas id="packetSimulator" width="760" height="480" aria-label="Animated quantum wave packet simulation"></canvas>
+          <div class="readout"><span class="status-dot"></span><span id="timeReadout">0.0</span> simulated time · purple: ψ wave · blue: probability</div>
+        </div>
+      </section>
+
+      <section class="why" aria-labelledby="why-title">
+        <p class="eyebrow">What did you notice?</p>
+        <h2>The wavefunction moves and spreads. The probability shows where the particle is likely to be found.</h2>
+        <p>The purple line shows the wavefunction, <strong>ψ</strong>. It can have positive and negative values, so it moves above and below the middle line. The blue curve shows <strong>|ψ|²</strong>, which gives the probability of detecting the particle at each position. When the blue curve spreads out, the particle's possible location is spread over a larger region.</p>
+        <details>
+          <summary>what this animation is showing</summary>
+          <p>This is a simplified model of a Gaussian quantum wave packet. It shows the main ideas: the packet can move, spread out, and reflect from a wall. It is meant to help you understand the physics, not to reproduce every detail of a real quantum calculation.</p>
+        </details>
+      </section>
+
+      <section class="lesson" aria-labelledby="lesson-title">
+        <p class="eyebrow">The idea, step by step</p>
+        <h2>Why does a quantum wave packet spread?</h2>
+        <p class="lesson-intro">A localized particle state cannot be made from just one wavelength. It needs many different wave components. These components have different momenta and evolve at different rates, so the packet gradually spreads out.</p>
+        <ol class="story-steps">
+          <li><span class="step-number">1</span><div><h3>One perfect wave is spread everywhere.</h3><p>A single infinite wave has one exact wavelength and therefore one exact momentum. But it extends across all of space, so it cannot describe a particle that is localized near one particular place.</p></div></li>
+          <li><span class="step-number">2</span><div><h3>Many waves can combine into a packet.</h3><p>When waves with different wavelengths are added together, they can reinforce each other in one region and mostly cancel elsewhere. The result is a wave packet: a quantum state concentrated around a particular location.</p></div></li>
+          <li><span class="step-number">3</span><div><h3>A narrower packet needs a wider range of momenta.</h3><p>To make the particle more localized, we need to combine more different wave components. That means a larger spread of possible momenta. These components evolve differently, so a narrow packet spreads faster.</p></div></li>
+          <li><span class="step-number">4</span><div><h3>The packet can move while it spreads.</h3><p>The center of the probability distribution moves according to the particle's momentum. At the same time, the packet can become wider. If it reaches a wall, the quantum state reflects from it. A measurement still gives one definite position for the particle.</p></div></li>
+        </ol>
+        <div class="equation-card">
+          <p class="eyebrow">The essential maths</p>
+          <div class="equation">P(x) = |ψ(x)|<sup>2</sup></div>
+          <p>This tells us the probability of detecting the particle at position <strong>x</strong>. The wavefunction is <strong>ψ</strong>, and its absolute value squared gives the probability density. The blue shape in the simulation represents this probability.</p>
+          <div class="equation small-equation">Δx · Δp ≥ ℏ / 2</div>
+          <p>This is the uncertainty principle. <strong>Δx</strong> describes the spread in position, while <strong>Δp</strong> describes the spread in momentum. It is not just a problem with our measuring tools. It is a basic property of quantum states. A particle that is very localized in position must have a larger spread of possible momenta.</p>
+        </div>
+      </section>
+
+      <section class="control-guide" aria-labelledby="controls-title">
+        <p class="eyebrow">Make a change, see a reason</p>
+        <h2>What do the controls actually do?</h2>
+        <div class="control-explanations">
+          <article><h3>Make the packet narrower</h3><p>The particle starts more localized in space. But a narrow position spread requires a wider range of momenta, so the packet spreads more quickly.</p></article>
+          <article><h3>Make the particle heavier</h3><p>For the same kind of wave packet, a larger mass makes the packet spread more slowly. This is one reason quantum effects are much easier to notice for tiny particles than for everyday objects.</p></article>
+          <article><h3>Add more momentum</h3><p>The center of the packet moves faster in the direction of its momentum. Changing the momentum mainly changes how quickly the packet travels across the space.</p></article>
+          <article><h3>Put a wall at the end</h3><p>The packet reaches the wall and reflects. The quantum wavefunction changes as it reflects, and the probability distribution moves back into the available space.</p></article>
+        </div>
+        <div class="live-insight" id="packetInsight" aria-live="polite"></div>
+      </section>
+
+      <section class="try-next" aria-labelledby="try-title">
+        <p class="eyebrow">Your mini investigation</p>
+        <h2>Can you control how the packet spreads?</h2>
+        <ol>
+          <li>Start with a wide packet in open space and watch it move for a while.</li>
+          <li>Reset, make the packet narrow, and compare how quickly the blue probability curve spreads.</li>
+          <li>Keep the packet narrow but make the particle heavier. What changes?</li>
+          <li>Turn on the wall. Predict what will happen when the packet reaches it, then test your prediction.</li>
+        </ol>
+      </section>
+    </main>
+    <footer>Made for curious minds. No quantum degree needed.</footer>
+    <script src="wave-packets.js"></script>
+  </body>
+</html>
+```

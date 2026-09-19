@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore the quantum double-slit experiment." />
+    <title>double slit — tiny quantum lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="index.html"><span class="atom">✦</span> tiny quantum lab</a>
+        <a class="nav-link" href="index.html">← all experiments</a>
+      </nav>
+
+      <section class="experiment-page" aria-labelledby="experiment-title">
+        <div class="experiment-copy">
+          <p class="eyebrow">Experiment 01 — Double slit</p>
+          <h1>Send particles one at a time. Watch a wave pattern appear.</h1>
+          <p>Each particle arrives at the screen as a single dot. But when many particles are sent through the two slits, the dots slowly form a pattern of bright and dark bands. Try changing the experiment and see how the pattern changes.</p>
+          <div class="challenge"><strong>Try this:</strong> run it with two slits open, then close one slit. What happens to the pattern?</div>
+          <div class="controls" aria-label="Experiment controls">
+            <label>
+              Slits
+              <select id="slitMode"><option value="two">two open</option><option value="one">one open</option></select>
+            </label>
+            <label>
+              How far apart are the slits?
+              <input id="separation" type="range" min="35" max="130" value="75" />
+              <output id="separationValue">medium</output>
+            </label>
+            <label>
+              Wavelength
+              <input id="wavelength" type="range" min="5" max="28" value="14" />
+              <output id="wavelengthValue">14</output>
+            </label>
+            <label>
+              Particle speed
+              <input id="rate" type="range" min="6" max="70" value="24" />
+              <output id="rateValue">24</output>
+            </label>
+            <div class="actions">
+              <button id="toggle" class="button" type="button">send particles</button>
+              <button id="reset" class="button secondary" type="button">start over</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lab">
+          <canvas id="simulator" width="760" height="480" aria-label="Animated double-slit simulation"></canvas>
+          <div class="readout"><span class="status-dot"></span><span id="particleCount">0</span> dots on the screen</div>
+        </div>
+      </section>
+
+      <section class="why" aria-labelledby="why-title">
+        <p class="eyebrow">What did you notice?</p>
+        <h2>Each particle makes one dot. The pattern comes from probability.</h2>
+        <p>With both slits open, the quantum waves from the two possible paths combine. In some places they add together, making particles more likely to arrive there. In other places they cancel, making particles less likely to arrive there. After many particles, this creates the bright and dark bands you see.</p>
+        <details>
+          <summary>show the physics</summary>
+          <p>The simulation uses a simplified interference equation: <em>P(y) ∝ cos²(πdy / λL)</em>. It captures the main idea of the double-slit experiment without including every detail of a real experiment.</p>
+        </details>
+      </section>
+
+      <section class="lesson" aria-labelledby="lesson-title">
+        <p class="eyebrow">The idea, step by step</p>
+        <h2>So where do the stripes come from?</h2>
+        <p class="lesson-intro">The strange part is that a particle is detected as a particle, but quantum physics describes where it can be found using a <strong>wavefunction</strong>. The wavefunction lets us calculate the probability of finding the particle at each position.</p>
+
+        <ol class="story-steps">
+          <li>
+            <span class="step-number">1</span>
+            <div><h3>The particle has many possible outcomes.</h3><p>An electron or photon is sent toward the slits. Before we detect it, quantum physics describes the possible results using a wavefunction called <strong>ψ</strong> (“psi”). Psi is not a little physical wave like a water wave. It is a mathematical description that tells us what outcomes are possible and how likely they are.</p></div>
+          </li>
+          <li>
+            <span class="step-number">2</span>
+            <div><h3>With two slits, there are two possible paths.</h3><p>The particle can reach the screen through the top slit or through the bottom slit. In quantum mechanics, both possibilities are included in the wavefunction. The two parts of the wavefunction combine before we calculate where the particle is likely to be detected.</p></div>
+          </li>
+          <li>
+            <span class="step-number">3</span>
+            <div><h3>The two waves can add or cancel.</h3><p>Sometimes the two wavefunctions add together. This makes the probability larger, so particles are more likely to arrive there. Sometimes they cancel each other out. Then the probability becomes very small, so very few particles arrive there. This creates the bright and dark bands.</p></div>
+          </li>
+          <li>
+            <span class="step-number">4</span>
+            <div><h3>Each particle is detected at one place.</h3><p>The detector records one particle at one location. You do not see a fraction of a particle spread across the screen. But when you repeat the experiment many times, the individual dots build up into the probability pattern predicted by quantum mechanics.</p></div>
+          </li>
+        </ol>
+
+        <div class="equation-card">
+          <p class="eyebrow">The essential maths</p>
+          <div class="equation">P(y) = |ψ(y)|<sup>2</sup></div>
+          <p>Read this as: <strong>the probability of detecting the particle at position y is the absolute value of the wavefunction squared.</strong> The wavefunction itself can contain positive, negative, or complex values, but a probability must be a real number that is zero or greater.</p>
+          <div class="equation small-equation">ψ<sub>total</sub> = ψ<sub>top slit</sub> + ψ<sub>bottom slit</sub></div>
+          <p>This is where interference comes from. The wavefunctions from the two slits are added first, and then the result is squared to get the probability. If one slit is closed, there is only one wavefunction, so there is no two-path interference pattern.</p>
+        </div>
+      </section>
+
+      <section class="control-guide" aria-labelledby="controls-title">
+        <p class="eyebrow">Make a change, see a reason</p>
+        <h2>What do the controls actually do?</h2>
+        <div class="control-explanations">
+          <article><h3>Open one slit</h3><p>Now there is only one open path. There is no second wavefunction to interfere with it, so the many bright and dark stripes disappear. Instead, you get one wider spread of particles.</p></article>
+          <article><h3>Move the slits farther apart</h3><p>Increasing the distance between the slits changes the difference between the two paths. This makes the interference bands appear closer together on the screen.</p></article>
+          <article><h3>Use a longer wavelength</h3><p>A longer wavelength makes the interference pattern spread out. The bright bands become farther apart.</p></article>
+          <article><h3>Change particle speed</h3><p>In this simulation, speed does not change the interference pattern. It only changes how quickly particles arrive, so you can build the pattern faster or slower.</p></article>
+        </div>
+        <div class="live-insight" id="liveInsight" aria-live="polite"></div>
+      </section>
+
+      <section class="try-next" aria-labelledby="try-title">
+        <p class="eyebrow">Your mini investigation</p>
+        <h2>Can you explain what you see?</h2>
+        <ol>
+          <li>Run the experiment with both slits open and wait for the bands to become visible.</li>
+          <li>Before changing anything, predict what will happen if you close one slit.</li>
+          <li>Clear the screen, close one slit, and test your prediction.</li>
+          <li>Try a longer wavelength. Do the bright bands move closer together or farther apart?</li>
+        </ol>
+      </section>
+    </main>
+    <footer>Made for curious minds. No quantum degree needed.</footer>
+    <script src="app.js"></script>
+  </body>
+</html>
+```

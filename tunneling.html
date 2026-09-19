@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore quantum tunneling with an interactive experiment." />
+    <title>quantum tunneling — tiny quantum lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="index.html"><span class="atom">✦</span> tiny quantum lab</a>
+        <a class="nav-link" href="index.html">← all experiments</a>
+      </nav>
+
+      <section class="experiment-page" aria-labelledby="experiment-title">
+        <div class="experiment-copy">
+          <p class="eyebrow">Experiment 02 — Quantum tunneling</p>
+          <h1>Can a particle get through a barrier?</h1>
+          <p>In everyday life, if a ball does not have enough energy to get over a wall, it bounces back. A quantum particle behaves differently. Even when its energy is lower than the barrier, there can still be a small chance of finding the particle on the other side. Send a wave packet toward the barrier and see how that chance changes.</p>
+          <div class="challenge"><strong>Try this:</strong> make the barrier thinner. Does more of the wave reach the other side?</div>
+          <div class="controls" aria-label="Experiment controls">
+            <label>
+              Barrier thickness
+              <input id="thickness" type="range" min="24" max="145" value="70" />
+              <output id="thicknessValue">medium</output>
+            </label>
+            <label>
+              Barrier height
+              <input id="height" type="range" min="35" max="150" value="95" />
+              <output id="heightValue">high</output>
+            </label>
+            <label>
+              Particle energy
+              <input id="energy" type="range" min="20" max="100" value="52" />
+              <output id="energyValue">medium</output>
+            </label>
+            <div class="actions">
+              <button id="launch" class="button" type="button">send a wave packet</button>
+              <button id="reset" class="button secondary" type="button">start over</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lab">
+          <canvas id="tunnelSimulator" width="760" height="480" aria-label="Animated quantum tunneling simulation"></canvas>
+          <div class="readout"><span class="status-dot"></span><span id="attemptCount">0</span> wave packets sent · <span id="transmittedCount">0</span> tunneled through</div>
+        </div>
+      </section>
+
+      <section class="why" aria-labelledby="why-title">
+        <p class="eyebrow">What did you notice?</p>
+        <h2>The wavefunction gets smaller inside the barrier, but it does not immediately become zero.</h2>
+        <p>The purple packet represents the particle's wavefunction. When it reaches the barrier, most of the wavefunction is reflected. But a smaller part can extend into the barrier and, if the barrier is thin enough, reach the other side. This gives the particle a chance of being detected there. That is <strong>quantum tunneling</strong>.</p>
+        <details>
+          <summary>what this animation is showing</summary>
+          <p>This is a simplified picture of a quantum wave packet, not a full numerical solution of Schrödinger's equation. The height of the wave represents the size of the probability amplitude. A larger amplitude means a larger probability of detecting the particle in that region. The orange marker represents a possible detection of the particle, not a tiny ball travelling along the wave.</p>
+        </details>
+      </section>
+
+      <section class="lesson" aria-labelledby="lesson-title">
+        <p class="eyebrow">The idea, step by step</p>
+        <h2>So how can tunneling happen?</h2>
+        <p class="lesson-intro">The key difference is that quantum particles are described by a <strong>wavefunction</strong> <strong>ψ</strong>. When a quantum particle reaches a barrier, its wavefunction can extend into the barrier instead of stopping immediately at its edge.</p>
+
+        <ol class="story-steps">
+          <li><span class="step-number">1</span><div><h3>Classical physics says the particle cannot cross.</h3><p>Imagine throwing a ball at a hill. If the ball does not have enough energy to reach the top, it rolls back down. If the particle's energy is lower than the barrier height, classical physics predicts that the particle cannot get to the other side.</p></div></li>
+          <li><span class="step-number">2</span><div><h3>Quantum physics gives the particle a small possibility inside the barrier.</h3><p>For a quantum particle, the wavefunction does not suddenly stop at the edge of the barrier. It gets smaller as it enters the barrier. The longer it travels inside the barrier, the smaller the wavefunction becomes.</p></div></li>
+          <li><span class="step-number">3</span><div><h3>If the barrier is thin enough, some wavefunction reaches the other side.</h3><p>If the wavefunction is still nonzero on the far side, there is a chance of detecting the particle there. The particle is not literally squeezing through a hole in the wall. Quantum mechanics simply gives a nonzero probability for finding it on the other side.</p></div></li>
+          <li><span class="step-number">4</span><div><h3>Repeat the experiment and the probability becomes visible.</h3><p>In one trial, the particle may be detected on the far side or it may be reflected. If you repeat the experiment many times, the fraction that tunnel becomes close to the predicted tunneling probability.</p></div></li>
+        </ol>
+
+        <div class="equation-card">
+          <p class="eyebrow">The essential maths</p>
+          <div class="equation">P(x) = |ψ(x)|<sup>2</sup></div>
+          <p>Just like in the double-slit experiment, we get probability by taking the absolute value of the wavefunction squared. Inside the barrier, the wavefunction becomes smaller, so the probability of detecting the particle there also becomes smaller.</p>
+          <div class="equation small-equation">T ≈ e<sup>−2κa</sup></div>
+          <p><strong>T</strong> is the approximate probability that the particle tunnels through. <strong>a</strong> is the thickness of the barrier, and <strong>κ</strong> depends on the barrier height and the particle's energy. You do not need to calculate it. The important part is what the equation tells us: a thicker or taller barrier makes tunneling much less likely, while giving the particle more energy makes tunneling more likely.</p>
+        </div>
+      </section>
+
+      <section class="control-guide" aria-labelledby="controls-title">
+        <p class="eyebrow">Make a change, see a reason</p>
+        <h2>What do the controls actually do?</h2>
+        <div class="control-explanations">
+          <article><h3>Make the barrier thinner</h3><p>The wavefunction has less distance to travel inside the barrier, so it does not have as much time to become small. More of it can reach the other side, making tunneling more likely.</p></article>
+          <article><h3>Make the barrier taller</h3><p>A taller barrier makes the wavefunction decrease faster inside it. Less of the wavefunction reaches the other side, so tunneling becomes less likely.</p></article>
+          <article><h3>Give the particle more energy</h3><p>When the particle has more energy, the barrier is easier for it to tunnel through. The wavefunction decreases less quickly inside the barrier, so the tunneling probability increases.</p></article>
+          <article><h3>Send many packets</h3><p>Sending more packets does not make each individual particle more likely to tunnel. It simply gives you more trials, so the measured fraction of particles that tunnel gets closer to the predicted probability.</p></article>
+        </div>
+        <div class="live-insight" id="tunnelInsight" aria-live="polite"></div>
+      </section>
+
+      <section class="try-next" aria-labelledby="try-title">
+        <p class="eyebrow">Your mini investigation</p>
+        <h2>Can you make tunneling more likely?</h2>
+        <ol>
+          <li>Start with a thick, tall barrier and send several wave packets. How many make it through?</li>
+          <li>Keep the barrier height the same, make it thinner, and compare the results.</li>
+          <li>Now increase the particle's energy. What happens to the tunneling chance?</li>
+          <li>Explain your results using one idea: the wavefunction gets smaller inside the barrier, but it may still reach the other side.</li>
+        </ol>
+      </section>
+    </main>
+    <footer>Made for curious minds. No quantum degree needed.</footer>
+    <script src="tunneling.js"></script>
+  </body>
+</html>

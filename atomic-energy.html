@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>atomic energy levels — tiny quantum lab</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+<nav class="nav">
+<a class="brand" href="index.html"><span class="atom">✦</span> tiny quantum lab</a>
+<a class="nav-link" href="index.html">← all experiments</a>
+</nav>
+
+<section class="experiment-page">
+<div class="experiment-copy">
+<p class="eyebrow">Experiment 05 — Atomic energy levels</p>
+<h1>Why do atoms glow in particular colors?</h1>
+<p>An electron in an atom can only occupy certain energy states. Give the atom energy and the electron can move to a higher state. When it returns to a lower state, the energy difference can be released as a photon with a specific color.</p>
+
+<div class="challenge">
+<strong>Try this:</strong> excite the electron to a higher level. When it falls back, does the photon have the same color each time?
+</div>
+
+<div class="controls">
+<label>Excite to level
+<select id="level">
+<option value="2">level 2</option>
+<option value="3" selected>level 3</option>
+<option value="4">level 4</option>
+</select>
+</label>
+
+<label>Atom type
+<select id="atom">
+<option value="1" selected>hydrogen-like</option>
+<option value="1.35">neon-like</option>
+<option value="1.7">helium-like</option>
+</select>
+</label>
+
+<label>Fall speed
+<input id="speed" type="range" min="20" max="100" value="55">
+<output id="speedValue">medium</output>
+</label>
+
+<div class="actions">
+<button id="excite" class="button">add energy</button>
+<button id="reset" class="button secondary">start over</button>
+</div>
+</div>
+</div>
+
+<div class="lab">
+<canvas id="atomSimulator" width="760" height="480" aria-label="Atomic energy-level simulation"></canvas>
+<div class="readout">
+<span class="status-dot"></span>
+<span id="photonCount">0</span> photons released · last color: <span id="lastColor">none yet</span>
+</div>
+</div>
+</section>
+
+<section class="why">
+<p class="eyebrow">What did you notice?</p>
+<h2>An atom does not emit every color. Its allowed energies determine the colors.</h2>
+<p>Electrons in atoms can occupy specific energy levels rather than any energy they want. When an electron moves from a higher level to a lower one, the energy difference can be released as a photon. A larger energy difference means a higher-frequency, more energetic photon.</p>
+
+<details>
+<summary>what this animation is showing</summary>
+<p>The rings represent allowed energy levels, not tiny planet-like orbits. The moving dot is a simple visual way to show the electron changing between energy states.</p>
+</details>
+</section>
+
+<section class="lesson">
+<p class="eyebrow">The idea, step by step</p>
+<h2>Atoms can produce a characteristic spectrum.</h2>
+
+<ol class="story-steps">
+<li>
+<span class="step-number">1</span>
+<div>
+<h3>Only certain energy levels are allowed.</h3>
+<p>Quantum mechanics allows certain electron states around an atom and does not allow the states in between. Each allowed state has a specific energy.</p>
+</div>
+</li>
+
+<li>
+<span class="step-number">2</span>
+<div>
+<h3>Energy can excite an electron.</h3>
+<p>Energy from light, heat, collisions, or electricity can move an electron into a higher allowed state.</p>
+</div>
+</li>
+
+<li>
+<span class="step-number">3</span>
+<div>
+<h3>The electron can return to a lower state.</h3>
+<p>An excited electron can move back to a lower allowed state. When it does, the energy difference has to be accounted for.</p>
+</div>
+</li>
+
+<li>
+<span class="step-number">4</span>
+<div>
+<h3>A photon can carry away the difference.</h3>
+<p>When the energy difference is emitted as a photon, its frequency is set by that difference. Different transitions therefore produce different photon energies and colors.</p>
+</div>
+</li>
+</ol>
+
+<div class="equation-card">
+<p class="eyebrow">The essential maths</p>
+<div class="equation">ΔE = hf</div>
+<p>The energy difference <strong>ΔE</strong> between two levels can be carried by a photon. Higher frequency <strong>f</strong> means a more energetic photon.</p>
+
+<div class="equation small-equation">E<sub>n</sub> ∝ −1/n<sup>2</sup></div>
+<p>For a simple hydrogen-like atom, higher level number <strong>n</strong> means a higher energy state and a less tightly bound electron. The important idea here is that the allowed energies are discrete, not continuous.</p>
+</div>
+</section>
+
+<section class="control-guide">
+<p class="eyebrow">Make a change, see a reason</p>
+<h2>What do the controls actually do?</h2>
+
+<div class="control-explanations">
+<article>
+<h3>Choose a higher level</h3>
+<p>The electron starts from a higher energy state. Depending on the transition it makes, the energy difference can be larger, producing a more energetic photon.</p>
+</article>
+
+<article>
+<h3>Change atom type</h3>
+<p>Different atoms have different energy-level structures. Their allowed transitions can therefore produce different sets of photon energies and colors.</p>
+</article>
+
+<article>
+<h3>Change fall speed</h3>
+<p>This changes only how quickly the animation shows the transition. The photon's color is determined by the energy difference, not by the animation speed.</p>
+</article>
+
+<article>
+<h3>Look for the real-world link</h3>
+<p>The pattern of wavelengths in an atomic spectrum can identify an element. Astronomers use these spectral lines to learn what elements are present in stars and other distant objects.</p>
+</article>
+</div>
+
+<div class="live-insight" id="atomInsight">
+</div>
+</section>
+
+<section class="try-next">
+<p class="eyebrow">Your mini investigation</p>
+<h2>Make different colored light.</h2>
+
+<ol>
+<li>Choose level 2 and release the electron.</li>
+<li>Repeat from level 4. Compare the photon colors and energies.</li>
+<li>Change the atom type and see how the emitted color changes.</li>
+<li>Explain why the atom does not produce every possible color between the transitions you observe.</li>
+</ol>
+</section>
+
+</main>
+<footer>Made for curious minds. No quantum degree needed.</footer>
+<script src="atomic-energy.js"></script>
+</body>
+</html>
